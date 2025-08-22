@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio • Elijah Boon</title>
+    <meta
+      name="description"
+      content="Portfolio of Elijah Boon, student from San Sebastian Recoletos de Cavite with experience in Python, Machine Learning, and App Development."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ====== Base / Reset ====== */
+      :root {
+        --bg: #0b0f14;
+        --bg-elev: #101621;
+        --text: #e6eef8;
+        --muted: #98a3b3;
+        --brand: #6aa4ff;
+        --brand-2: #8bffd0;
+        --card: #0f1420;
+        --border: #1d2636;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+        --radius-sm: 12px;
+        --maxw: 1100px;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f7fafc;
+          --bg-elev: #ffffff;
+          --text: #111827;
+          --muted: #5b6472;
+          --brand: #2563eb;
+          --brand-2: #059669;
+          --card: #ffffff;
+          --border: #e5e7eb;
+          --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial;
+        background: radial-gradient(
+            1200px 800px at 80% -10%,
+            rgba(106, 164, 255, 0.1),
+            transparent 60%
+          ),
+          radial-gradient(
+            1000px 600px at -10% 10%,
+            rgba(139, 255, 208, 0.1),
+            transparent 55%
+          ),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: var(--brand);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        width: min(100%, var(--maxw));
+        margin-inline: auto;
+        padding: 0 20px;
+      }
+      section {
+        padding: 80px 0;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: saturate(140%) blur(8px);
+        background: color-mix(in oklab, var(--bg-elev) 80%, transparent);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+      }
+      .brand .logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        box-shadow: var(--shadow);
+      }
+      .nav a {
+        font-weight: 500;
+        color: var(--text);
+        opacity: 0.85;
+      }
+      .nav a:hover {
+        opacity: 1;
+      }
+      .nav ul {
+        list-style: none;
+        display: flex;
+        gap: 22px;
+        margin: 0;
+        padding: 0;
+      }
+      .menu-toggle {
+        display: none;
+      }
+      .hamb {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        width: 28px;
+        cursor: pointer;
+      }
+      .hamb span {
+        height: 3px;
+        background: var(--text);
+        border-radius: 2px;
+      }
+      @media (max-width: 860px) {
+        .hamb {
+          display: flex;
+        }
+        .nav ul {
+          position: fixed;
+          inset: 60px 14px auto 14px;
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+          padding: 16px;
+          background: var(--bg-elev);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+        }
+        .menu-toggle:checked ~ ul {
+          display: flex;
+        }
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 40px;
+        padding: 60px 0;
+      }
+      .hero h1 {
+        font-size: clamp(28px, 6vw, 56px);
+        line-height: 1.05;
+        margin: 0 0 14px;
+      }
+      .hero p {
+        font-size: clamp(16px, 2vw, 20px);
+        color: var(--muted);
+        margin: 0 0 24px;
+      }
+      .hero .cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--bg-elev);
+        color: var(--text);
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, var(--brand), var(--brand-2));
+        border: none;
+        color: #0b111a;
+      }
+      .hero .headshot {
+        aspect-ratio: 1/1;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .hero .headshot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      @media (max-width: 860px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(22px, 3.5vw, 32px);
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Elijah Boon</span>
+        </div>
+        <label class="hamb" for="menu"
+          ><span></span><span></span><span></span
+        ></label>
+        <input
+          class="menu-toggle"
+          id="menu"
+          type="checkbox"
+          aria-label="Toggle Navigation"
+        />
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="container">
+      <section class="hero" id="home">
+        <div>
+          <p class="pill">Student • San Sebastian Recoletos de Cavite</p>
+          <h1>
+            Hi, I’m Elijah Boon. I explore Python, Machine Learning, and App
+            Development.
+          </h1>
+          <p>
+            I’m passionate about creating intelligent systems and building apps
+            that solve real problems. As a student, I’m continuously learning
+            and expanding my skills in modern technologies.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Contact Me</a>
+          </div>
+        </div>
+        <div class="headshot card">
+          <img
+            src="071257e2-d22a-43a8-8e8d-997af6fa8272.jpg"
+            alt="Elijah Boon"
+          />
+        </div>
+      </section>
+    </div>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About Me</h2>
+          <p>Who I am and what I do</p>
+        </div>
+        <div class="card" style="padding: 22px">
+          <h3>Student & Developer</h3>
+          <p>
+            I am a student from
+            <strong>San Sebastian Recoletos de Cavite</strong> with experience
+            in <strong>Python programming</strong>,
+            <strong>machine learning</strong>, and
+            <strong>app development</strong>. I’m passionate about applying my
+            knowledge to projects that make an impact and enhance my learning
+            journey.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2>Skills</h2>
+        </div>
+        <div
+          class="card"
+          style="padding: 22px; display: flex; flex-wrap: wrap; gap: 10px"
+        >
+          <span class="chip">Python,</span>
+          <span class="chip">Machine Learning,</span>
+          <span class="chip">App Development,</span>
+          <span class="chip">Computer Vision,</span>
+          <span class="chip">Web Development.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <h2>Experience</h2>
+          <p>What I’ve worked on</p>
+        </div>
+        <div class="card" style="padding: 22px">
+          <h3>Academic Projects</h3>
+          <p>
+            Developed projects in machine learning and app development as part
+            of coursework and self‑driven learning. Gained practical experience
+            in Python and building functional applications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Let’s connect</p>
+        </div>
+        <div class="card" style="padding: 22px">
+          <p>
+            Email:
+            <a href="mailto:elijahboon986@gmail.com">elijahboon@example.com</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div
+        class="container"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 14px;
+        "
+      ></div>
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
